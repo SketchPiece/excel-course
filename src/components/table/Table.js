@@ -51,6 +51,7 @@ export class Table extends ExcelComponent {
   }
 
   selectCell($cell) {
+    console.log($cell)
     this.selection.select($cell)
     this.$emit('table:select', $cell)
     const styles = $cell.getStyles(Object.keys(defaultStyles))
@@ -107,7 +108,9 @@ export class Table extends ExcelComponent {
   }
 
   onInput(event) {
-    this.updateTextInStore($(event.target).text())
+    const text = $(event.target).text()
+    $(event.target).attr('data-value', text)
+    this.updateTextInStore(text)
   }
 }
 
